@@ -2,6 +2,7 @@ package horaciosalud;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+/** Administra los datos del sistema mediante una única instancia Singleton. */
 public class GestorHoracioSalud {
      private static final GestorHoracioSalud INSTANCIA =
             new GestorHoracioSalud();

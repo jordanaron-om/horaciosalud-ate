@@ -3,6 +3,7 @@ package horaciosalud;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.time.LocalDateTime;
+/** Inicia el menú de consola para operar el módulo HoracioSalud. */
 public class HoracioSaludApp {
 
     private static final Scanner entrada = new Scanner(System.in);
@@ -15,11 +16,17 @@ public class HoracioSaludApp {
         do {
             System.out.println("\n=== HORACIOSALUD ===");
             System.out.println("1. Registrar paciente");
-            System.out.println("2. Registrar médico");
+            System.out.println("2. Registrar medico");
             System.out.println("3. Listar pacientes");
-            System.out.println("4. Listar médicos");
+            System.out.println("4. Listar medicos");
+            System.out.println("5. Programar cita");
+            System.out.println("6. Listar citas");
+            System.out.println("7. Registrar medicamento");
+            System.out.println("8. Ajustar stock de medicamento");
+            System.out.println("9. Listar medicamentos");
+            System.out.println("10. Generar reporte de atencion");
             System.out.println("0. Salir");
-            System.out.print("Elige una opción: ");
+            System.out.print("Elige una opcion: ");
 
             try {
                 opcion = Integer.parseInt(entrada.nextLine());
@@ -78,7 +85,7 @@ public class HoracioSaludApp {
     private static void registrarPaciente() {
         System.out.println("\n--- Registrar paciente ---");
 
-        System.out.print("Código: ");
+        System.out.print("Codigo: ");
         String codigo = entrada.nextLine();
 
         System.out.print("Nombres: ");
@@ -87,10 +94,10 @@ public class HoracioSaludApp {
         System.out.print("Apellidos: ");
         String apellidos = entrada.nextLine();
 
-        System.out.print("Número de documento ficticio: ");
+        System.out.print("Numero de documento ficticio: ");
         String documento = entrada.nextLine();
 
-        System.out.print("Teléfono ficticio: ");
+        System.out.print("Telefono ficticio: ");
         String telefono = entrada.nextLine();
 
         System.out.print("Fecha de nacimiento (AAAA-MM-DD): ");
@@ -105,9 +112,9 @@ public class HoracioSaludApp {
     }
 
     private static void registrarMedico() {
-        System.out.println("\n--- Registrar médico ---");
+        System.out.println("\n--- Registrar medico ---");
 
-        System.out.print("Código: ");
+        System.out.print("Codigo: ");
         String codigo = entrada.nextLine();
 
         System.out.print("Nombres: ");
@@ -116,10 +123,10 @@ public class HoracioSaludApp {
         System.out.print("Apellidos: ");
         String apellidos = entrada.nextLine();
 
-        System.out.print("Número de documento ficticio: ");
+        System.out.print("Numero de documento ficticio: ");
         String documento = entrada.nextLine();
 
-        System.out.print("Teléfono ficticio: ");
+        System.out.print("Telefono ficticio: ");
         String telefono = entrada.nextLine();
 
         System.out.print("Especialidad: ");
@@ -130,14 +137,14 @@ public class HoracioSaludApp {
                 especialidad);
 
         gestor.registrarMedico(medico);
-        System.out.println("Médico registrado.");
+        System.out.println("Medico registrado.");
     }
 
     private static void listarPacientes() {
         System.out.println("\n--- Pacientes registrados ---");
 
         if (gestor.getPacientes().isEmpty()) {
-            System.out.println("Todavía no hay pacientes.");
+            System.out.println("Todavia no hay pacientes.");
             return;
         }
 
@@ -155,11 +162,11 @@ public class HoracioSaludApp {
         System.out.println("7. Registrar medicamento");
         System.out.println("8. Ajustar stock de medicamento");
         System.out.println("9. Listar medicamentos");
-        System.out.println("10. Generar reporte de atención");
-        System.out.println("\n--- Médicos registrados ---");
+        System.out.println("10. Generar reporte de atencion");
+        System.out.println("\n--- Medicos registrados ---");
 
         if (gestor.getMedicos().isEmpty()) {
-            System.out.println("Todavía no hay médicos.");
+            System.out.println("Todavia no hay medicos.");
             return;
         }
 
@@ -174,13 +181,13 @@ public class HoracioSaludApp {
     private static void programarCita() {
     System.out.println("\n--- Programar cita ---");
 
-    System.out.print("Código de la cita: ");
+    System.out.print("Codigo de la cita: ");
     String codigo = entrada.nextLine();
 
-    System.out.print("Código del paciente: ");
+    System.out.print("Codigo del paciente: ");
     Paciente paciente = gestor.buscarPaciente(entrada.nextLine());
 
-    System.out.print("Código del médico: ");
+    System.out.print("Codigo del medico: ");
     Medico medico = gestor.buscarMedico(entrada.nextLine());
 
     System.out.print("Fecha y hora (AAAA-MM-DDTHH:MM): ");
@@ -197,7 +204,7 @@ private static void listarCitas() {
     System.out.println("\n--- Citas registradas ---");
 
     if (gestor.getCitas().isEmpty()) {
-        System.out.println("Todavía no hay citas.");
+        System.out.println("Todavia no hay citas.");
         return;
     }
 
@@ -205,7 +212,7 @@ private static void listarCitas() {
         System.out.println(cita.getCodigo()
                 + " - Paciente: " + cita.getPaciente().getNombres()
                 + " " + cita.getPaciente().getApellidos()
-                + " - Médico: " + cita.getMedico().getNombres()
+                + " - Medico: " + cita.getMedico().getNombres()
                 + " - Fecha: " + cita.getFechaHora()
                 + " - Estado: " + cita.getEstado());
     }
@@ -214,19 +221,19 @@ private static void listarCitas() {
 private static void registrarMedicamento() {
     System.out.println("\n--- Registrar medicamento ---");
 
-    System.out.print("Código: ");
+    System.out.print("Codigo: ");
     String codigo = entrada.nextLine();
 
     System.out.print("Nombre: ");
     String nombre = entrada.nextLine();
 
-    System.out.print("Presentación: ");
+    System.out.print("Presentacion: ");
     String presentacion = entrada.nextLine();
 
     System.out.print("Stock inicial: ");
     int stock = Integer.parseInt(entrada.nextLine());
 
-    System.out.print("Stock mínimo: ");
+    System.out.print("Stock minimo: ");
     int stockMinimo = Integer.parseInt(entrada.nextLine());
 
     Medicamento medicamento = new Medicamento(
@@ -237,18 +244,18 @@ private static void registrarMedicamento() {
 }
 
 private static void ajustarStock() {
-    System.out.print("Código del medicamento: ");
+    System.out.print("Codigo del medicamento: ");
     Medicamento medicamento =
             gestor.buscarMedicamento(entrada.nextLine());
 
     if (medicamento == null) {
-        System.out.println("No se encontró ese medicamento.");
+        System.out.println("No se encontro ese medicamento.");
         return;
     }
 
     System.out.println("1. Aumentar stock");
     System.out.println("2. Reducir stock");
-    System.out.print("Elige una opción: ");
+    System.out.print("Elige una opcion: ");
     int opcionStock = Integer.parseInt(entrada.nextLine());
 
     System.out.print("Cantidad: ");
@@ -259,7 +266,7 @@ private static void ajustarStock() {
     } else if (opcionStock == 2) {
         medicamento.reducirStock(cantidad);
     } else {
-        System.out.println("Opción no válida.");
+        System.out.println("Opcion no valida.");
         return;
     }
 
@@ -270,7 +277,7 @@ private static void listarMedicamentos() {
     System.out.println("\n--- Inventario de medicamentos ---");
 
     if (gestor.getMedicamentos().isEmpty()) {
-        System.out.println("Todavía no hay medicamentos.");
+        System.out.println("Todavia no hay medicamentos.");
         return;
     }
 
@@ -280,7 +287,7 @@ private static void listarMedicamentos() {
                 + " (" + medicamento.getPresentacion() + ")"
                 + " - Stock: " + medicamento.getStock()
                 + (medicamento.necesitaReposicion()
-                        ? " - Requiere reposición" : ""));
+                        ? " - Requiere reposicion" : ""));
     }
 }
 

@@ -2,6 +2,7 @@ package horaciosalud;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+/** Genera resúmenes de atención e inventario usando operaciones Stream. */
 public class ReporteAtencion {
     private final GestorHoracioSalud gestor;
 
@@ -58,13 +59,36 @@ public class ReporteAtencion {
                         == CitaMedica.Estado.CANCELADA)
                 .count();
 
-        return "REPORTE DE ATENCIÓN - " + fecha + "\n"
+        return "REPORTE DE ATENCION - " + fecha + "\n"
                 + "Pacientes activos: " + contarPacientesActivos() + "\n"
-                + "Citas del día: " + citasDelDia.size() + "\n"
+                + "Citas del dia: " + citasDelDia.size() + "\n"
                 + "Citas programadas: " + programadas + "\n"
                 + "Citas atendidas: " + atendidas + "\n"
                 + "Citas canceladas: " + canceladas + "\n"
+                + "Unidades totales en inventario: "
+                + calcularStockTotal() + "\n"
                 + "Medicamentos por reponer: "
-                + obtenerMedicamentosParaReposicion().size();
+                + String.join(", ", obtenerNombresMedicamentosParaReposicion());
     }
+    /**
+ * Obtiene los nombres de los medicamentos que necesitan reposición.
+ * Aplica filter para seleccionar y map para transformar los datos.
+ */
+public List<String> obtenerNombresMedicamentosParaReposicion() {
+    return gestor.getMedicamentos()
+            .stream()
+            .filter(Medicamento::necesitaReposicion)
+            .map(Medicamento::getNombre)
+            .collect(Collectors.toList());
+}
+
+/**
+ * Suma las unidades disponibles en el inventario mediante reduce.
+ */
+public int calcularStockTotal() {
+    return gestor.getMedicamentos()
+            .stream()
+            .map(Medicamento::getStock)
+            .reduce(0, Integer::sum);
+}
 }

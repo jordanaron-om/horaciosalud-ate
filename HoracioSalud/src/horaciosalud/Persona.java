@@ -1,11 +1,11 @@
 package horaciosalud;
-
+/** Clase abstracta que reúne los datos comunes de pacientes y médicos. */
 public abstract class Persona {
      private final String codigo;
     private final String nombres;
     private final String apellidos;
     private final String numeroDocumento;
-    private final String telefono;
+    private String telefono;
 
     protected Persona(String codigo, String nombres, String apellidos,
                       String numeroDocumento, String telefono) {
@@ -42,6 +42,13 @@ public abstract class Persona {
     public String getTelefono() {
         return telefono;
     }
-
+/**
+ * Actualiza el teléfono después de validar que no esté vacío.
+ *
+ * @param telefono nuevo teléfono ficticio de contacto
+ */
+public void setTelefono(String telefono) {
+    this.telefono = validar(telefono, "El teléfono");
+}
     public abstract String getTipoPersona();
 }

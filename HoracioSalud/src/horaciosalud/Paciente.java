@@ -1,5 +1,6 @@
 package horaciosalud;
 import java.time.LocalDate;
+	/** Representa a un paciente registrado en el sistema. */
 public class Paciente extends Persona {
 
     private final LocalDate fechaNacimiento;

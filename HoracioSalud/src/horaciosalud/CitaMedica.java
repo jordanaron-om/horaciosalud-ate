@@ -1,6 +1,6 @@
 package horaciosalud;
 import java.time.LocalDateTime;
-
+/** Representa una cita entre un paciente y un médico. */
 public class CitaMedica {
 
     public enum Estado {

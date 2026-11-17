@@ -1,5 +1,5 @@
 package horaciosalud;
-
+/** Representa a un médico y su especialidad dentro del establecimiento. */
 public class Medico extends Persona {
 
     private final String especialidad;

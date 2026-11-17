@@ -1,5 +1,5 @@
 package horaciosalud;
-
+/** Representa un medicamento y permite controlar su stock. */
 public class Medicamento {
      private final String codigo;
     private final String nombre;
